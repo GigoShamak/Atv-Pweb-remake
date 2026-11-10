@@ -1,6 +1,10 @@
-Criada a pasta
+# Atividade Apache PWEB2
 
-Criado o html
+## Aula 1 - Init
+
+Foi criada a pasta
+
+Foi criado o html
 
 Usado um comando no Docker para direcionar todas as requisições de uma porta específica para a porta do Docker
 
@@ -8,10 +12,10 @@ Usado um comando no Docker para direcionar todas as requisições de uma porta e
 
 Para conferir se está ativo: `docker ps`
 
-Criado o arquivo "sobre.html" para referenciar a rota na url
+Criado o arquivo "sobre.html" para  testar rotas
 
-Foi encerrado a aplicação por meio do comando `docker container rm /aula-apache`
+Comando para remover o container do docker: `docker container rm /aula-apache`
 
-E a porta foi trocada para 8000:80 pelo comando: `docker run -d --name aula-apache -p 8000:80 -v "${PWD}:/usr/local/apache2/htdocs/" httpd:2.4`
+Comando para trocar  a porta: `docker run -d --name aula-apache -p 8000:80 -v "${PWD}:/usr/local/apache2/htdocs/" httpd:2.4`
 
-Para verificar as configurações do servidor `curl -v http://localhost:xxxxx/`
+Comando para verificar as configurações do servidor `curl -v http://localhost:xxxxx/`
