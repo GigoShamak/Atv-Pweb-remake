@@ -1,16 +1,26 @@
-// server.js — ponto de entrada da nossa API.
-// 1. Importamos o Express (pacote instalado, por isso SEM caminho e SEM ".js").
+// server.js — API da Escola de Cursos (Encontro 1: tudo em um arquivo, dados em memória).
+
 import express from "express";
-// 2. Criamos a aplicação.
+import { cursos } from "./src/dados/cursos.js";
 const app = express();
-// 3. Habilitamos a leitura de corpo em JSON (vamos precisar já já, nos POSTs).
 app.use(express.json());
-// 4. Primeira rota: um "cartão de visita" da API na raiz "/".
-// (req = requisição que chegou; res = resposta que vamos devolver)
+// Cartão de visita da API.
 app.get("/", (req, res) => {
     res.json({ mensagem: "API da Escola de Cursos no ar" });
 });
-// 5. Sobe o servidor e fica ESCUTANDO a porta 3000.
+// Lista todos os cursos.
+app.get("/cursos", (req, res) => {
+    res.json(cursos);
+});
+// Busca um curso pelo id (404 se não existir).
+app.get("/cursos/:id", (req, res) => {
+    const id = Number(req.params.id);
+    const curso = cursos.find((c) => c.id === id);
+    if (!curso) {
+        return res.status(404).json({ erro: "Curso não encontrado" });
+    }
+    res.json(curso);
+});
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Escola de Cursos rodando em http://localhost:${PORT}`);
